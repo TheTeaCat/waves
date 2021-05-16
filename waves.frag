@@ -8,8 +8,8 @@ float spread_2 = pow(1.0/256.0, 2.0);
 
 float band_height = 1.0 / band_count;
 
-float d_max = 1.0;
-float d_min = 0.0;
+float d_max = 0.8;
+float d_min = 0.2;
 
 void main() {
   vec2 uv = vTexCoord;
@@ -22,7 +22,12 @@ void main() {
 
   // Get the lightness of the current band normalised 0-1
   // just use the pixel at the bottom cause I'm lazy
-  float band_target = max(0.0, (tex.r+tex.g+tex.b)/3.0 - d_min) / (d_max - d_min);
+  float band_target = 
+    min((d_max - d_min),
+      max(0.0, 
+        (tex.r+tex.g+tex.b)/3.0 - d_min
+      )
+    ) / (d_max - d_min);
 
   // Normalise lightness to band height, so pixel at height band_max_l in the
   // current band should be brightest
