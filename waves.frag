@@ -3,21 +3,25 @@ precision mediump float;
 varying vec2 vTexCoord;
 uniform sampler2D tex0;
 
+// Number of horizontal lines ('bands')
 float band_count = 40.0;
-float spread_2 = pow(1.0/256.0, 2.0);
-
 float band_height = 1.0 / band_count;
 
+// How thick the lines are
+float spread_2 = pow(1.0/256.0, 2.0);        
+
+// Min and max brightness of pixels
 float d_max = 0.8;
 float d_min = 0.2;
 
 void main() {
+  // Get screen position
   vec2 uv = vTexCoord;
 
-  //Flip image right way up
+  // Flip image right way up
   uv.y = 1.0 - uv.y;
 
-  //Get rgb vals
+  // Get rgb vals
   vec4 tex = texture2D(tex0, uv);
 
   // Get the lightness of the current band normalised 0-1
@@ -45,4 +49,4 @@ void main() {
 
   // Make frag colour from dest
   gl_FragColor = vec4(vec3(dest), 1.0);
-}
+} 
