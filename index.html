@@ -8,6 +8,9 @@
     <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/languages/glsl.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
+      body {
+        padding: 16px;
+      }
       * {
         margin: 0;
       }
@@ -19,9 +22,7 @@
         align-items:center;
         flex-direction:column;
         width:100%;
-        padding-bottom: 16px;
       }
-
       #fear-section {
         margin: 16px;
         padding: 0px 16px;
@@ -44,10 +45,15 @@
         margin: 0 auto;
         object-fit:contain;
       }
+      #code {
+        max-width:100%;
+      }
       .code {
         margin: 16px 0;
         padding-left: 16px;
         border-left: 4px solid black;
+        max-width: 100%;
+        overflow-x: scroll;
       }
     </style>
   </head>
